@@ -11,6 +11,6 @@ public class Target : MonoBehaviour, IDamagable
         health -= damage;
         if (health <= 0) Destroy(gameObject);
 
-        Debug.Log("hit");
+        
     }
 }
