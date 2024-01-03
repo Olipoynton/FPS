@@ -7,14 +7,34 @@ public class Gun : MonoBehaviour
 {
     [Header("references")]
     [SerializeField] private GunData gunData;
+    [SerializeField] private Transform cam;
     
     float timeSinceLastShot;
 
     private void Start()
     {
         playerShoot.shootInput += Shoot;
+        playerShoot.reloadInput += StartReload;
     }
 
+    public void StartReload()
+    {
+        if (!gunData.reloading)
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
+    private IEnumerator Reload()
+    {
+        gunData.reloading = true;
+
+        yield return new WaitForSeconds(gunData.reloadTime);
+
+        gunData.currentAmmo = gunData.magSize;
+
+        gunData.reloading = false;
+    }
     private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
 
     public void Shoot()
@@ -23,8 +43,11 @@ public class Gun : MonoBehaviour
         {
             if (CanShoot())
             {
-                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                if (Physics.Raycast(cam.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
+                    IDamagable damagable = hitInfo.transform.GetComponent<IDamagable>();
+                    damagable?.TakeDamage(gunData.damage);
+
                     Debug.Log(hitInfo.transform.name);
                 }
 
