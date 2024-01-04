@@ -35,7 +35,9 @@ public class Gun : MonoBehaviour
     {
         gunData.reloading = true;
 
-        yield return new WaitForSeconds(gunData.reloadTime);
+       
+
+       yield return new WaitForSeconds(gunData.reloadTime);
 
         gunData.currentAmmo = gunData.magSize;
 
@@ -49,7 +51,7 @@ public class Gun : MonoBehaviour
         
         if (gunData.currentAmmo > 0)
         { 
-            muzzleflash.Play();
+          
 
 
             if (CanShoot())
@@ -60,12 +62,14 @@ public class Gun : MonoBehaviour
                     damagable?.TakeDamage(gunData.damage);
 
                     Debug.Log(hitInfo.transform.name);
+
+                    
                 }
 
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
                 OnGunShot();
-
+                muzzleflash.Play();
 
             }
         }
