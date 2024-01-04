@@ -11,15 +11,21 @@ public class Gun : MonoBehaviour
     
     float timeSinceLastShot;
 
+    public ParticleSystem muzzleflash;
+
     private void Start()
     {
         playerShoot.shootInput += Shoot;
         playerShoot.reloadInput += StartReload;
     }
 
+    private void OnDisable() => gunData.reloading = false;
+    
+        
+    
     public void StartReload()
     {
-        if (!gunData.reloading)
+        if (!gunData.reloading && this.gameObject.activeSelf)
         {
             StartCoroutine(Reload());
         }
@@ -39,8 +45,13 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
+       
+        
         if (gunData.currentAmmo > 0)
-        {
+        { 
+            muzzleflash.Play();
+
+
             if (CanShoot())
             {
                 if (Physics.Raycast(cam.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
