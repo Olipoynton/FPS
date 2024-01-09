@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
@@ -12,11 +13,14 @@ public class Gun : MonoBehaviour
     float timeSinceLastShot;
 
     public ParticleSystem muzzleflash;
+    public Text ammoDisplay;
+
 
     private void Start()
     {
         playerShoot.shootInput += Shoot;
         //playerShoot.reloadInput += StartReload;
+        
     }
 
     private void OnDisable() => gunData.reloading = false;
@@ -61,10 +65,14 @@ public class Gun : MonoBehaviour
     private void Update()
     {
         timeSinceLastShot += Time.deltaTime;
+
+        ammoDisplay.text = gunData.currentAmmo.ToString();
     }
 
     private void OnGunShot()
     {
        
     }
+
+    
 }
