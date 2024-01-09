@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ammo
+  - shotgun ammo
   layers:
   - Default
   - TransparentFX

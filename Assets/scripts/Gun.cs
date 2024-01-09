@@ -16,31 +16,15 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         playerShoot.shootInput += Shoot;
-        playerShoot.reloadInput += StartReload;
+        //playerShoot.reloadInput += StartReload;
     }
 
     private void OnDisable() => gunData.reloading = false;
-    
-        
-    
-    public void StartReload()
-    {
-        if (!gunData.reloading && this.gameObject.activeSelf)
-        {
-            StartCoroutine(Reload());
-        }
-    }
 
-    private IEnumerator Reload()
-    {
-        gunData.reloading = true;
 
-        yield return new WaitForSeconds(gunData.reloadTime);
+   
 
-        gunData.currentAmmo = gunData.magSize;
 
-        gunData.reloading = false;
-    }
 
     private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
 
