@@ -7,14 +7,16 @@ public class playerShoot : MonoBehaviour
 {
     public static Action shootInput;
     public static Action reloadInput;
-
     
+
+
 
     private void Update()
     {
         if (Input.GetMouseButton(0))
         {
             shootInput?.Invoke();
+            
         }
 
         if (Input.GetKeyDown(KeyCode.R))

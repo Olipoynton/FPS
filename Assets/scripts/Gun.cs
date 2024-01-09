@@ -6,7 +6,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [Header("references")]
-    [SerializeField] private GunData gunData;
+    [SerializeField] public GunData gunData;
     [SerializeField] private Transform cam;
     
     float timeSinceLastShot;
@@ -35,14 +35,13 @@ public class Gun : MonoBehaviour
     {
         gunData.reloading = true;
 
-       
-
-       yield return new WaitForSeconds(gunData.reloadTime);
+        yield return new WaitForSeconds(gunData.reloadTime);
 
         gunData.currentAmmo = gunData.magSize;
 
         gunData.reloading = false;
     }
+
     private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
 
     public void Shoot()

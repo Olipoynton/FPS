@@ -75,4 +75,23 @@ public class FPScontroller : MonoBehaviour
 
         #endregion
     }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+
+
+        if (collision.gameObject.name == "Player")
+        {
+            Destroy(gameObject);
+
+        }
+
+        if (collision.gameObject.tag == "ammo")
+        {
+            Destroy(gameObject);
+        }
+
+
+
+    }
 }
