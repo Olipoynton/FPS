@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ammo
   - shotgun ammo
+  - health
   layers:
   - Default
   - TransparentFX

@@ -19,8 +19,15 @@ public class PistolAmmo : MonoBehaviour
         {
             gunData.currentAmmo += gunData.magSize;
         }
+
+        if(other.CompareTag("Respawn"))
+        {
+            gunData.currentAmmo = 0;
+        }
         
     }
+
+    
 
     
 }

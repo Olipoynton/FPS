@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class playerHealth : MonoBehaviour
 {
-    
+    [SerializeField] GunData gunData;
 
 
     public float health;
@@ -37,11 +37,15 @@ public class playerHealth : MonoBehaviour
         {
             transform.position = spawnpoint.transform.position;
 
+           
+
+
             
-            
+
         }
 
-        
+       
+
 
     }
 
@@ -54,6 +58,21 @@ public class playerHealth : MonoBehaviour
        
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("health"))
+        {
+            Destroy(other.gameObject);
+        }
+
+        if (health > 0)
+        {
+            health = maxHealth;
+        }
+
+        
+    }
 
 
 

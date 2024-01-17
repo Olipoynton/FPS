@@ -5,6 +5,8 @@ using UnityEngine;
 public class ShotgunAmmo : MonoBehaviour
 {
     [SerializeField] public GunData gunData;
+    [SerializeField] public playerHealth Playerhealth;
+    
 
 
     private void OnTriggerEnter(Collider other)
@@ -20,7 +22,11 @@ public class ShotgunAmmo : MonoBehaviour
             gunData.currentAmmo += gunData.magSize;
         }
 
-      
+        if (other.CompareTag("Respawn"))
+        {
+            gunData.currentAmmo = 0;
+        }
+
 
     }
 
@@ -31,4 +37,7 @@ public class ShotgunAmmo : MonoBehaviour
             gunData.currentAmmo = 0;
         }
     }
+
+    
+
 }
