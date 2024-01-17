@@ -22,7 +22,8 @@ public class playerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = health;
+        maxHealth = 100f;
+        health = maxHealth;
        
      
     }
@@ -32,14 +33,29 @@ public class playerHealth : MonoBehaviour
     {
         healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
 
-        if (health <= 0)
+         if (health <= 0)
         {
-            player.transform.position = spawnpoint.transform.position;
+            transform.position = spawnpoint.transform.position;
+
+            
+            
         }
+
+        
+
     }
 
-    
+    private void FixedUpdate()
+    {
+        if(health <= 0)
+        {
+            health = maxHealth;
+        }
+       
+    }
 
-    
-    
+
+
+
+
 }
