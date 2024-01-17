@@ -6,10 +6,6 @@ using UnityEngine;
 public class playerShoot : MonoBehaviour
 {
     public static Action shootInput;
-    public static Action reloadInput;
-    
-
-
 
     private void Update()
     {
@@ -19,9 +15,6 @@ public class playerShoot : MonoBehaviour
             
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            reloadInput?.Invoke();
-        }
+        
     }
 }

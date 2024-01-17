@@ -9,17 +9,22 @@ public class Gun : MonoBehaviour
     [Header("references")]
     [SerializeField] public GunData gunData;
     [SerializeField] private Transform cam;
+   
     
     float timeSinceLastShot;
 
     public ParticleSystem muzzleflash;
     public Text ammoDisplay;
+    
 
+    
 
     private void Start()
     {
+        
         playerShoot.shootInput += Shoot;
-        //playerShoot.reloadInput += StartReload;
+        
+        
         
     }
 
@@ -43,14 +48,18 @@ public class Gun : MonoBehaviour
 
             if (CanShoot())
             {
-                if (Physics.Raycast(cam.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                if (!Physics.Raycast(cam.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                {
+                    print("help");
+                }
+                else
                 {
                     IDamagable damagable = hitInfo.transform.GetComponent<IDamagable>();
                     damagable?.TakeDamage(gunData.damage);
 
                     Debug.Log(hitInfo.transform.name);
 
-                    
+
                 }
 
                 gunData.currentAmmo--;
@@ -67,6 +76,10 @@ public class Gun : MonoBehaviour
         timeSinceLastShot += Time.deltaTime;
 
         ammoDisplay.text = gunData.currentAmmo.ToString();
+
+        
+
+       
     }
 
     private void OnGunShot()

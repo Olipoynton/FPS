@@ -20,5 +20,15 @@ public class ShotgunAmmo : MonoBehaviour
             gunData.currentAmmo += gunData.magSize;
         }
 
+      
+
+    }
+
+    void Start()
+    {
+        if (gunData.currentAmmo > 0)
+        {
+            gunData.currentAmmo = 0;
+        }
     }
 }
