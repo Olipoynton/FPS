@@ -6,6 +6,11 @@ public class PistolAmmo : MonoBehaviour
 {
     [SerializeField] public GunData gunData;
 
+    private void Start()
+    {
+        gunData.currentAmmo = 0;
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,12 +18,14 @@ public class PistolAmmo : MonoBehaviour
         {
             Destroy(other.gameObject);
             
-        }
-
-        if (gunData.currentAmmo >= 0)
+ if (gunData.currentAmmo >= 0)
         {
             gunData.currentAmmo += gunData.magSize;
         }
+
+        }
+
+       
 
         if(other.CompareTag("Respawn"))
         {

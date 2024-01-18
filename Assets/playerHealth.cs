@@ -64,13 +64,16 @@ public class playerHealth : MonoBehaviour
         if (other.CompareTag("health"))
         {
             Destroy(other.gameObject);
-        }
 
         if (health > 0)
         {
             health = maxHealth;
         }
 
+
+        }
+
+        
         
     }
 

@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Target : MonoBehaviour, IDamagable
 {
+
+   
 
     private float health = 10f;
     public void TakeDamage(float damage)
@@ -11,8 +14,19 @@ public class Target : MonoBehaviour, IDamagable
         
         
         health -= damage;
-        if (health <= 0) Destroy(gameObject);
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            
+        }
+
 
         
     }
+
+    private void update()
+    {
+        
+    }
+
 }
