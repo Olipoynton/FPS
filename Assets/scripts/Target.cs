@@ -14,11 +14,15 @@ public class Target : MonoBehaviour, IDamagable
         
         
         health -= damage;
-        if (health <= 0)
+        if (health <= 0) 
         {
             Destroy(gameObject);
-            
+            scoreManager.instance.addPoint();
         }
+        
+            
+            
+        
 
 
         

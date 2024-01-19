@@ -37,7 +37,7 @@ public class playerHealth : MonoBehaviour
         {
             transform.position = spawnpoint.transform.position;
 
-           
+            scoreManager.instance.takePoint();
 
 
             
@@ -69,7 +69,7 @@ public class playerHealth : MonoBehaviour
         {
             health = maxHealth;
         }
-
+          
 
         }
 
